@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../imgs/black-hole.png">
+    <link rel="stylesheet" href="../../main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bytesized&family=Pixelify+Sans:wght@400..700&display=swap"
+        rel="stylesheet">
+    <title>As Regras</title>
+</head>
+<style>
+    .start {
+        margin: 10vh;
+    }
+
+    .fade-color-aqua {
+        transition: color 1.5s ease-in-out;
+        color: white;
+    }
+
+    .fade-color-aqua.active {
+        color: aqua;
+    }
+</style>
+
+<body>
+    <div class="main pixelado">
+        <ul>
+            <li id="typing1"></li>
+            <li id="typing2"></li>
+            <li id="typing3"></li>
+        </ul>
+        <p id="typing4" class="start"></p>
+    </div>
+
+    <script>
+        const texts = [
+            "Todas as respostas serão UMA única palavra.",
+            "As Respostas serão sempre sem acentos e espaços.",
+            "As dicas do enigma ficarão visíveis (ou não) na tela.",
+            "Pronto para começar?"
+        ];
+
+        const elements = [
+            document.getElementById("typing1"),
+            document.getElementById("typing2"),
+            document.getElementById("typing3"),
+            document.getElementById("typing4")
+        ];
+
+        let textIndex = 0; // Índice da frase atual
+        let charIndex = 0; // Índice da letra atual
+        let typingSpeed = 0;
+
+        function typeText() {
+            if (textIndex < texts.length) {
+                let currentText = texts[textIndex];
+                let currentElement = elements[textIndex];
+
+                if (charIndex < currentText.length) {
+                    currentElement.innerHTML += currentText[charIndex] === " " ? "&nbsp;" : currentText[charIndex];
+                    charIndex++;
+                    setTimeout(typeText, typingSpeed);
+                } else {
+                    // Se terminou a frase, passa para a próxima
+                    textIndex++;
+                    charIndex = 0;
+                    setTimeout(typeText, 0);
+                }
+            } else {
+                // Quando todas as frases forem digitadas, transforma "regras." em link
+                setTimeout(() => {
+                    let lastElement = elements[elements.length - 1];
+                    lastElement.innerHTML = lastElement.innerHTML.replace("começar?", ` <span class="fade-color-aqua"><a href='./Phases/Phase1/phase1.html'>começar?</a></span>`);
+
+                    setTimeout(() => {
+                        document.querySelector(".fade-color-aqua").classList.add("active");
+                    }, 20);
+
+                }, 500);
+
+
+            }
+        }
+
+        window.onload = typeText;
+    </script>
+</body>
+
+</html>

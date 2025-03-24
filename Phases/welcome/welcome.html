@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../imgs/black-hole.png">
+    <link rel="stylesheet" href="../../main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bytesized&family=Pixelify+Sans:wght@400..700&display=swap"
+        rel="stylesheet">
+    <title> Introdução </title>
+    <style>
+        .fade-color-red, .fade-color-yellow {
+            transition: color 1.5s ease-in-out;
+            color: white;
+        }
+
+        .fade-color-red.active {
+            color: red;
+        }
+        .fade-color-yellow.active {
+            color: rgb(255, 251, 0);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main pixelado">
+        <p id="typing"></p>
+    </div>
+
+    <script>
+        const text = "Seja muito bem-vindo ao Void.";
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                document.getElementById("typing").innerHTML += text[i] === " " ? "&nbsp;" : text[i];
+                i++;
+                setTimeout(type, 80);
+            } else {
+                const typingElement = document.getElementById("typing");
+
+                // Transforma "Void." em um link
+                setTimeout(() => {
+                    typingElement.innerHTML = typingElement.innerHTML.replace("Void.", `<span class="fade-color-red"><a id="void-link" href="#">Void.</a></span>`);
+
+                    setTimeout(() => {
+                        document.querySelector(".fade-color-red").classList.add("active");
+                    }, 20);
+
+                    // Evento de clique para ativar a segunda fase
+                    document.getElementById("void-link").onclick = function (event) {
+                        event.preventDefault();
+                        explanation();
+                    };
+
+                }, 500);
+            }
+        }
+
+        function explanation() {
+            let typingElement = document.getElementById("typing");
+            let newText = "Agora que você entrou no Void, siga as regras.";
+            let typingSpeed = 60;
+            let charIndex = 0;
+
+            typingElement.innerHTML = ""; // Apaga o texto anterior
+
+            function typeNewText() {
+                if (charIndex < newText.length) {
+                    typingElement.innerHTML += newText[charIndex] === " " ? "&nbsp;" : newText[charIndex];
+                    charIndex++;
+                    setTimeout(typeNewText, typingSpeed);
+                } else {
+                    // Transforma "regras." em um link clicável
+                    setTimeout(() => {
+                        typingElement.innerHTML = typingElement.innerHTML.replace("regras.", `<span class="fade-color-yellow"><a id="rules-link" href="./therules.html">regras.</a></span>`);
+
+                        setTimeout(() => {
+                        document.querySelector(".fade-color-yellow").classList.add("active");
+                    }, 200);
+
+                        // Adiciona um evento de clique no link
+                        document.getElementById("rules-link").onclick = function (event) {
+                            event.preventDefault(); // Evita redirecionamento imediato
+                            window.location.href = this.href; // Redireciona após clicar
+                        };
+
+                    }, 500);
+                }
+            }
+
+            typeNewText();
+        }
+
+        window.onload = type;
+    </script>
+
+</body>
+
+</html>
