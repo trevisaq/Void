@@ -28,18 +28,18 @@
 <body>
     <div class="main pixelado">
         <ul>
-            <li id="typing1"></li>
-            <li id="typing2"></li>
-            <li id="typing3"></li>
+            <p id="typing1"></p>
+            <p id="typing2"></p>
+            <p id="typing3"></p>
         </ul>
         <p id="typing4" class="start"></p>
     </div>
 
     <script>
         const texts = [
-            "Todas as respostas serão UMA única palavra.",
-            "As Respostas serão sempre sem acentos e espaços.",
-            "As dicas do enigma ficarão visíveis (ou não) na tela.",
+            "1. Todas as respostas serão UMA única palavra.",
+            "2. As Respostas serão sempre sem acentos e espaços.",
+            "3. As dicas do enigma ficarão visíveis (ou não) na tela.",
             "Pronto para começar?"
         ];
 
@@ -52,7 +52,7 @@
 
         let textIndex = 0; // Índice da frase atual
         let charIndex = 0; // Índice da letra atual
-        let typingSpeed = 0;
+        let typingSpeed = 80;
 
         function typeText() {
             if (textIndex < texts.length) {
@@ -67,20 +67,18 @@
                     // Se terminou a frase, passa para a próxima
                     textIndex++;
                     charIndex = 0;
-                    setTimeout(typeText, 0);
+                    setTimeout(typeText, 200);
                 }
             } else {
-                // Quando todas as frases forem digitadas, transforma "regras." em link
                 setTimeout(() => {
                     let lastElement = elements[elements.length - 1];
-                    lastElement.innerHTML = lastElement.innerHTML.replace("começar?", ` <span class="fade-color-aqua"><a href='./Phases/Phase1/phase1.html'>começar?</a></span>`);
+                    lastElement.innerHTML = lastElement.innerHTML.replace("começar?", ` <span class="fade-color-aqua"><a href='../Phase 1/phase1.html'>começar ?</a></span>`);
 
                     setTimeout(() => {
                         document.querySelector(".fade-color-aqua").classList.add("active");
                     }, 20);
 
                 }, 500);
-
 
             }
         }

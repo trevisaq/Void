@@ -24,3 +24,25 @@ a {
     text-decoration: none;
     color: inherit; 
 }
+
+.button{
+    cursor: pointer;
+    width: 8%;
+    height: auto;
+    margin: 2.5%;
+    padding: 0.4%;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 40%;
+    border: 1px solid;
+    border-color:goldenrod;
+    color: goldenrod;
+    background-color: #0c0c0c;
+    transition: all 1s;
+}
+
+.button:hover{
+    border-radius: 12px;
+    border-color:deeppink ;
+    color: deeppink;
+}
+

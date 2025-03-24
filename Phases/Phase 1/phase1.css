@@ -1,0 +1,9 @@
+.img{
+     width: 60%;
+     /* filter: blur(8px); */
+     transition: all 2s;
+}
+
+.img:hover{
+    filter: blur(0px);
+}
