@@ -1,12 +1,27 @@
 *{
     margin: 0;
     padding: 0;
+}
+
+
+
+img{
+    width: 60%;
+    user-select: none;
+}
+button{
     user-select: none;
 }
 
 .pixelado{
     font-family: "Pixelify Sans", sans-serif;
     font-size: 3vw;
+}
+
+.obscuro{
+    font-size: 20px;
+    color: #0c0c0c;
+    user-select: all;
 }
 
 .main{
