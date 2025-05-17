@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (resposta === respostareal) {
             alert('shiu!, alguém pode ouvir!');
-            window.location.href = "";  
+            window.location.href = "../phase2/phase2.html";  
         } 
         else if (resposta === '' || resposta === '') {
             alert('');
